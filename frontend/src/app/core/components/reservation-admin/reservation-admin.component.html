@@ -1,0 +1,36 @@
+<div class="admin-reservations">
+
+
+  <div class="search-card">
+    <input [(ngModel)]="searchTerm" placeholder="Search by User ID or Email" />
+    <button (click)="search()">Search</button>
+    <button (click)="loadAll()">Reset</button>
+  </div>
+
+
+  <div *ngIf="loading" class="loading">Loading reservations...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <!-- Reservation cards -->
+  <div class="reservation-grid">
+    <div class="reservation-card" *ngFor="let r of reservations">
+      <div class="room-name">{{ r.roomName || '—' }}</div>
+      <div class="meta"><strong>ID:</strong> {{ r.reservationId }}</div>
+      <div class="meta"><strong>User:</strong> {{ r.userId }}</div>
+      <div class="meta"><strong>Date:</strong> {{ r.date }}</div>
+      <div class="meta"><strong>Time:</strong> {{ r.startTime }} – {{ r.endTime }}</div>
+      <div class="status" [ngClass]="r.status">{{ r.status }}</div>
+
+      <ng-container [ngSwitch]="r.status">
+        <button *ngIf="r.status === 'BOOKED'" (click)="cancel(r.reservationId)">
+          Cancel
+        </button>
+        <button *ngIf="r.status === 'CANCELED'" (click)="restore(r)">
+          Restore
+        </button>
+
+      </ng-container>
+    </div>
+  </div>
+
+</div>

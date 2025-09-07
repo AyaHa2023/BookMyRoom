@@ -1,0 +1,34 @@
+<div class="update-room-page">
+  <mat-card class="update-room-card">
+    <h2 class="form-title">✨ Update Room</h2>
+
+    <div *ngIf="loading" class="loading">Loading room...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <form *ngIf="room" class="update-room-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Room Name</mat-label>
+        <input matInput [(ngModel)]="room.roomName" name="roomName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Location</mat-label>
+        <input matInput [(ngModel)]="room.roomLocation" name="roomLocation" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Capacity</mat-label>
+        <input matInput type="number" [(ngModel)]="room.capacity" name="capacity" />
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-raised-button type="button" class="save-btn" (click)="save()">
+          💾 Save
+        </button>
+        <button mat-stroked-button color="warn" type="button" class="cancel-btn" (click)="cancel()">
+          ✖ Cancel
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

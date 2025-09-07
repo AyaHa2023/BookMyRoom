@@ -1,0 +1,36 @@
+<div class="reservations-wrapper">
+
+  <div class="reservations-section active-section">
+    <h2 class="section-title">✨ Active Reservations</h2>
+    <div *ngIf="activeReservations.length === 0" class="empty-msg">
+      No active reservations
+    </div>
+
+    <div class="reservation-card" *ngFor="let r of activeReservations">
+      <h3 class="room-name">{{ r.roomName }}</h3>
+      <p class="meta">
+        📅 {{ r.date }} <br />
+        ⏰ {{ r.startTime }} – {{ r.endTime }}
+      </p>
+      <span class="status BOOKED">Active</span>
+      <button (click)="cancel(r.reservationId)" class="cancel-btn">Cancel</button>
+    </div>
+  </div>
+
+
+  <div class="reservations-section history-section">
+    <h2 class="section-title">📜 Reservation History</h2>
+    <div *ngIf="historyReservations.length === 0" class="empty-msg">
+      No history yet
+    </div>
+
+    <div class="reservation-card" *ngFor="let r of historyReservations">
+      <h3 class="room-name">{{ r.roomName }}</h3>
+      <p class="meta">
+        📅 {{ r.date }} <br />
+        ⏰ {{ r.startTime }} – {{ r.endTime }}
+      </p>
+      <span class="status" [ngClass]="r.status">{{ r.status }}</span>
+    </div>
+  </div>
+</div>

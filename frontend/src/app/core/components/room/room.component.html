@@ -1,0 +1,90 @@
+<div class="rooms-page">
+
+  <div class="rooms-header">
+    <div>
+      <h1 class="title">Meeting Rooms</h1>
+      <p class="subtitle">Find the perfect space for your meeting</p>
+    </div>
+
+    <button
+      *ngIf="auth.hasRole('ROLE_ADMIN')"
+      mat-raised-button
+      class="create-btn"
+      (click)="toggleCreate()"
+    >
+      <span *ngIf="!showCreate">＋ Create Room</span>
+      <span *ngIf="showCreate">✖ Close</span>
+    </button>
+  </div>
+
+
+  <mat-card *ngIf="auth.hasRole('ROLE_ADMIN') && showCreate" class="create-card">
+    <h3>Add New Room</h3>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Room Name</mat-label>
+        <input matInput [(ngModel)]="newRoom.roomName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Location</mat-label>
+        <input matInput [(ngModel)]="newRoom.roomLocation" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Capacity</mat-label>
+        <input matInput type="number" [(ngModel)]="newRoom.capacity" />
+      </mat-form-field>
+
+      <div class="create-actions">
+        <button mat-raised-button color="primary" (click)="createRoom()">Create</button>
+        <button mat-stroked-button color="warn" (click)="toggleCreate()">Cancel</button>
+      </div>
+    </div>
+  </mat-card>
+
+  <div *ngIf="loading" class="loading">Loading rooms...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="rooms.length === 0 && !loading" class="empty">No rooms found.</div>
+
+  <!-- Cards -->
+  <div class="room-grid">
+    <mat-card class="room-card" *ngFor="let r of rooms">
+      <div class="card-header">
+        <h3>{{ r.roomName }}</h3>
+        <span class="capacity-chip">{{ r.capacity }} people</span>
+      </div>
+
+      <div class="meta">📍 {{ r.roomLocation }}</div>
+
+      <div class="actions">
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/reservations/create']"
+          [queryParams]="{ roomId: r.id }"
+        >
+          Reserve
+        </button>
+
+        <button
+          *ngIf="auth.hasRole('ROLE_ADMIN')"
+          mat-stroked-button
+          color="accent"
+          [routerLink]="['/rooms/update', r.id]"
+        >
+          Update
+        </button>
+
+        <button
+          *ngIf="auth.hasRole('ROLE_ADMIN')"
+          mat-stroked-button
+          color="warn"
+          (click)="deleteRoom(r.id)"
+        >
+          Delete
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>

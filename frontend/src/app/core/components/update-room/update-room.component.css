@@ -1,0 +1,79 @@
+.update-room-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f3e9f7, #9871b9);
+  font-family: "Roboto", sans-serif;
+  padding: 2rem;
+}
+
+.update-room-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 2rem;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.8s ease;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #6a1b9a;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+}
+
+.save-btn {
+  background: linear-gradient(90deg, #3a4eff, #6a1b9a);
+  color: #fff !important;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 25px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.save-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(106, 27, 154, 0.3);
+}
+
+.cancel-btn {
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.cancel-btn:hover {
+  background: rgba(215, 44, 44, 0.1);
+  transform: scale(1.05);
+}
+
+.error {
+  color: #d32f2f;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.loading {
+  text-align: center;
+  font-style: italic;
+  color: #555;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

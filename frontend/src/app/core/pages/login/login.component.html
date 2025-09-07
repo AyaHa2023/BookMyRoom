@@ -1,0 +1,41 @@
+<div class="page-wrapper">
+
+  <div class="left-section">
+    <img src="assets/logo.png" alt="BookMyRoom Logo" class="top-logo" />
+
+    <h1 class="slogan">Reserve your space, own your time.</h1>
+
+    <div class="login-card">
+      <h2 class="login-title">Sign in</h2>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" />
+        </mat-form-field>
+
+        <div *ngIf="error" class="error">{{ error }}</div>
+
+        <button mat-raised-button class="login-button full-width" type="submit" [disabled]="loading">
+          {{ loading ? 'Signing in...' : 'Sign in' }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="right-section">
+    <div class="quote-rotator">
+      <p class="quote">Smart booking, smarter meetings.</p>
+      <p class="quote">Find your space, fuel your ideas.</p>
+      <p class="quote">Work made simple, one room at a time.</p>
+      <p class="quote">Because every great idea needs a place.</p>
+    </div>
+  </div>
+
+</div>
